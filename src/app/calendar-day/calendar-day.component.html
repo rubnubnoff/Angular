@@ -1,0 +1,6 @@
+<div *ngIf="selectedDate">
+  <p>MY CASES ON {{ selectedDate | date:'fullDate' }}</p>
+  <ul *ngIf="cases">
+    <li *ngFor="let case of cases">{{ case }}</li>
+  </ul>
+</div>

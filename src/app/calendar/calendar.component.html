@@ -1,0 +1,37 @@
+<div class='calendar'>
+  <div>
+    <div class="calendar__date">
+      <button (click)="showPrevMonth()"><</button>
+        <p>{{dataService.months[currentMonth]}}, {{currentYear}}</p>
+        <button (click)="showNextMonth()">></button>
+    </div>
+    <table class="calendar__table">
+        <tr>
+          <th>Monday</th>
+          <th>Tuesday</th>
+          <th>Wednesday</th>
+          <th>Thurstday</th>
+          <th>Friday</th>
+          <th>Saturday</th>
+          <th>Sunday</th>
+        </tr>
+        <tr *ngFor="let week of weeks">
+          <td *ngFor="let day of week"
+            (click)='selectDate(day);dataService.getCases(currentYear, currentMonth, day)'
+            [class.currentDay]='currentDate===getDate(day)'
+            [class.selectedDay]='selectedDateString===getDate(day)'
+          >
+          {{day}}</td>
+        </tr>
+    </table>
+    <app-form 
+      [currentYear]='currentYear' 
+      [currentMonth]='currentMonth'
+      [selectedDay]='selectedDay'
+    ></app-form>
+  </div>
+  <app-calendar-day 
+    [selectedDate]='selectedDate'
+    [cases]='getCases()'
+  ></app-calendar-day>
+</div>

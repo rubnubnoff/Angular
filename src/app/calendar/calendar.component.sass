@@ -1,0 +1,30 @@
+.calendar
+    display: flex
+    padding-top: 50px
+    text-align: center
+    .calendar__date
+        display: flex
+        margin: 0 100px 20px 360px
+        p
+            margin: 0 10px 0 10px
+            width: 200px
+        button
+            height: 20px
+    .calendar__table
+        height: 300px
+        margin: 0 100px 50px 200px
+        text-align: center
+        border: 1px solid black
+        border-collapse: collapse
+        td, th
+            height: 30px
+            width: 80px
+            border: 1px solid black
+        td
+            cursor: pointer
+            &:hover
+                box-shadow: inset 0px 0px 1px 2px gray 
+.currentDay
+    background-color: #d9d4d4
+.selectedDay
+    box-shadow: inset 0px 0px 1px 2px gray
