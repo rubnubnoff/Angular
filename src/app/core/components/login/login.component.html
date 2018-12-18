@@ -1,0 +1,33 @@
+<div class="login-container">
+  <div class="login">
+    <div class='links'>
+        <a routerLink='/login' routerLinkActive='active'>SIGN IN</a>
+        <a routerLink='/register' routerLinkActive='active'>SIGN UP</a>
+    </div>
+    <form class="loginForm" [formGroup]="form" (ngSubmit)="onSubmit()">
+      <label>Email
+        <input type="text" formControlName="email">
+      </label>
+      <div *ngIf="form.touched && form.get('email').hasError('required')">
+        Это поле обязательно
+      </div>
+      <div *ngIf="form.touched && form.get('email').hasError('email')">
+          Поле должно быть корректным email
+      </div>
+      <label>Password
+        <input type="password" formControlName="password">
+      </label>
+      <div *ngIf="form.touched && form.get('password').hasError('required')">
+        Это поле обязательно
+      </div>
+      <div *ngIf="form.touched && form.get('password').hasError('minlength')">
+        Пароль должен содержать не менее 6 символов
+      </div>
+      <div>
+        {{message}}
+      </div>
+      <button type="submit" [disabled]="form.invalid">Sign In</button>
+    </form>
+  </div>
+</div>
+

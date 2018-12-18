@@ -1,0 +1,18 @@
+<div class="addTask-container">
+  <div class="addTask">
+      <form class="addTaskForm" [formGroup]="form" (ngSubmit)="onSubmit()">
+          <input formControlName='text'>
+          <div *ngIf="form.touched && form.get('text').hasError('required')">
+            Это поле обязательно
+          </div>
+          <button type="submit" [disabled]="form.invalid">Add</button>
+      </form>
+  </div>
+  <div class="layout-container" *ngIf="taskCreated">
+      <div class="layout">
+        <button class="close" (click)="closeModal()">X</button>
+        <p>Task have successfully created!</p>
+      </div>
+  </div>
+</div>
+

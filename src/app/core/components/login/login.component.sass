@@ -1,0 +1,61 @@
+.login-container
+  position: relative
+  display: flex
+  flex-direction: column
+  justify-content: center
+  align-items: center
+  height: 100vh
+  background-color: #3D4C74
+  .login
+    height: 500px
+    width: 400px
+    .links
+      display: flex
+      margin-bottom: 20px
+      a
+        margin-right: 10px
+        color: #6A6F8C
+        font-size: 20px
+        cursor: pointer
+.loginForm
+  display: flex
+  flex-direction: column
+  align-items: center
+  label
+    width: 100%
+    margin-bottom: 5px
+    margin-top: 15px
+    text-align: center
+    color: #8F929A
+    text-transform: uppercase
+    input
+      height: 40px
+      width: 90%
+      margin: 0 auto
+      margin-top: 5px
+      display: block
+      background-color: #505C7F
+      border-radius: 20px
+      font-size: 16px
+      padding-left: 10px
+      color: #E8EAEE
+  button
+    height: 40px
+    width: 90%
+    margin-top: 40px
+    background-color: #1161EE
+    border-radius: 20px
+    font-size: 16px
+    color: #E8EAEE
+.active
+  color: #E3E5EA !important
+  &:after
+    content: ''
+    height: 2px
+    display: block
+    width: 100%
+    background-color: #1161EE
+div
+  color: #E3E5EA
+
+
