@@ -1,6 +1,6 @@
 <div class='tasks-container'>
   <div class="tasks">
-  <div class="task" *ngFor="let task of tasksPromise | async">
+  <div class="task" *ngFor="let task of tasks$ | async">
     <p>Text: {{task.text}}</p>
     <input type="text" [formControl]="textValue" *ngIf="updatingTaskId===task._id">
     <p>Status: {{task.status}}

@@ -1,4 +1,5 @@
-import { Injectable } from '@angular/core';
+import { LOCAL_STORAGE } from '@ng-toolkit/universal';
+import { Injectable, Inject } from '@angular/core';
 import { HttpRequest, HttpHandler, HttpEvent } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
@@ -6,9 +7,9 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class TokenInterceptorService {
-  constructor() { }
+  constructor(@Inject(LOCAL_STORAGE) private localStorage: any, ) { }
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    const token = localStorage.getItem('x-auth-token');
+    const token = this.localStorage.getItem('x-auth-token');
     if (token) {
       const cloned = req.clone({
         setHeaders: {

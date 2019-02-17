@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { HeaderService } from '../../services/header.service';
-import { AuthService } from '../../services/auth.service';
+import { Component } from '@angular/core';
+import { HeaderService } from '../../../core/services/header.service';
+import { AuthService } from '../../../core/services/auth.service';
 import { Router } from '@angular/router';
+import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-header',
@@ -16,8 +17,6 @@ export class HeaderComponent {
     private router: Router
     ) { }
   onClick() {
-    this.authService.logout().then(() => {
-      this.router.navigate(['/login']);
-    });
+    this.authService.logout().subscribe();
   }
 }

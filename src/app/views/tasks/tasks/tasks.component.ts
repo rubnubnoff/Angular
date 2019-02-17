@@ -1,23 +1,21 @@
-import { Component, OnInit } from '@angular/core';
-import { TasksService } from '../../services/tasks.service';
+import { Component } from '@angular/core';
+import { TasksService } from '../../../core/services/tasks.service';
 import { FormControl, Validators } from '@angular/forms';
-import { Task } from '../../services/tasks.service';
-
+import { Task } from '../../../core/services/tasks.service';
+import { tap } from 'rxjs/operators';
 @Component({
   selector: 'app-tasks',
   templateUrl: './tasks.component.html',
   styleUrls: ['./tasks.component.sass']
 })
-export class TasksComponent implements OnInit {
+export class TasksComponent {
   textValue = new FormControl('', Validators.required);
   private status: string;
-  tasksPromise;
+  tasks$ = this.tasksService.getTasks();
   updatingTaskId: string ;
   constructor(private tasksService: TasksService) { }
 
-  ngOnInit() {
-    this.tasksPromise = this.tasksService.getTasks();
-  }
+
   changeTask(task_id: string, task_text: string, task_status: string): void {
     this.updatingTaskId = task_id;
     this.textValue.setValue(task_text);
@@ -35,14 +33,18 @@ export class TasksComponent implements OnInit {
     text: this.textValue.value,
     status: this.status
   };
-  this.tasksService.updateTask(body, task_id).then(() => {
-    this.tasksPromise = this.tasksService.getTasks();
-    this.cancel();
-  });
+  this.tasksService.updateTask(body, task_id)
+    .pipe(
+      tap(() => this.tasks$ = this.tasksService.getTasks()),
+      tap(() => this.cancel())
+    )
+    .subscribe();
   }
   deleteTask(task_id: string): void {
-    this.tasksService.deleteTask(task_id).then(() => {
-      this.tasksPromise = this.tasksService.getTasks();
-    });
+    this.tasksService.deleteTask(task_id)
+    .pipe(
+      tap(() => this.tasks$ = this.tasksService.getTasks())
+    )
+    .subscribe();
   }
 }

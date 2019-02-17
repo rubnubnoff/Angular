@@ -1,0 +1,12 @@
+{
+  "universal": {
+    "project": "routing-app",
+    "skipInstall": false,
+    "directory": "."
+  },
+  "pwa": {
+    "directory": ".",
+    "skipInstall": true,
+    "project": "routing-app"
+  }
+}

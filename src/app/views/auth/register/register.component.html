@@ -1,8 +1,8 @@
 <div class="register-container">
   <div class="register">
     <div class="links">
-        <a routerLink="/login" routerLinkActive="active">SIGN IN</a>
-        <a routerLink="/register" routerLinkActive="active">SIGN UP</a>
+        <a routerLink="/auth/login" routerLinkActive="active">SIGN IN</a>
+        <a routerLink="/auth/register" routerLinkActive="active">SIGN UP</a>
     </div>
     <form class="registerForm" [formGroup]="form" (ngSubmit)="onSubmit()">
       <label>Name
@@ -30,7 +30,7 @@
         Пароль должен содержать не менее 6 символов
       </div>
       <div>
-        {{message}}
+        {{error$ | async}}
       </div>
       <button type="submit" [disabled]="form.invalid">Sign In</button>
     </form>
